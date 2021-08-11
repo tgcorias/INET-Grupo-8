@@ -1,0 +1,46 @@
+:root{
+    /*Colores*/
+    --bg-gray:#555;
+    --header-blue: #558bff;
+    --slider-green: #68F090;
+    --map-aqua: #78ECD7; 
+    --shadow-box: 0px 2px 20px 0px rgba(0,0,0,0.8);
+}
+
+body{
+    background: var(--bg-gray);
+    color: #333;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+}
+html{
+    font-size:62.5%;
+    font-family: 'Raleway', sans-serif;
+}
+header{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container{
+    width: 100%;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.header__title--container{
+    width: 90%;
+    height: 80px;
+    background-color: var(--header-blue);
+    color: white;    
+}
+.box{
+    width: 60%;
+    height: 200px;
+    margin: 10%;
+    background-color: violet;
+}
