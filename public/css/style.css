@@ -40,6 +40,17 @@ header{
     background-color: var(--header-blue);
     color: white;   
     box-shadow: var(--shadow-box); 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.header__title--container i{
+    color: white;
+}
+.header__title--container i:hover{
+    transition: 350ms;
+    color: #333;
 }
 .box{
     width: 60%;
