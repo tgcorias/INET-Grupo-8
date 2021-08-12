@@ -38,6 +38,9 @@ app.get("/", (req,res) => {
 app.get("/login", (req,res) => {
     res.render("login", {msg: "Supermercado 1"})
 })
+app.get("/agregar", (req,res) => {
+    res.render("login", {msg: "Supermercado 1"})
+})
 
 app.listen(3000, (req, res) => {
   console.log('SERVER RUNNING IN http://localhost:3000')
