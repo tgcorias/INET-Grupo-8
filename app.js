@@ -42,6 +42,38 @@ app.get("/agregar", (req,res) => {
     res.render("agregar")
 })
 
+//10- Registro
+app.post("/agregar", async (req, res)=>{
+  const nombre_local = req.body.nombre_local
+  const nombre_responsable = req.body.nombre_responsable
+  const direccion = req.body.direccion
+  const ciudad = req.body.ciudad
+  const provincia = req.body.provincia
+  const email = req.body.email
+  const telefono = req.body.telefono
+  const capacidad_maxima = req.body.capacidad_maxima
+  const password = req.body.password
+  let passwordHash = await bcryptjc.hash(password, 8)
+  connection.query("INSERT INTO tabla SET ?", {
+    nombre_local:nombre_local,
+    nombre_responsable:nombre_responsable,
+    direccion:direccion,
+    ciudad:ciudad,
+    provincia:provincia,
+    email:email,
+    telefono:telefono,
+    capacidad_maxima:capacidad_maxima,
+    pass:passwordHash,
+  }, async(error,results)=>{
+    if(error){
+      console.log(error);
+    }
+    else {
+      res.send("BIEN! REGISTRASTE UNA SUCURSAL")
+    }
+  })
+})
+
 app.listen(3000, (req, res) => {
   console.log('SERVER RUNNING IN http://localhost:3000')
 })
