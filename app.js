@@ -35,6 +35,10 @@ const connection = require("./database/db")
 app.get("/", (req,res) => {
     res.render("index", {msg: "Supermercado 1"})
 })
+app.get("/login", (req,res) => {
+    res.render("login", {msg: "Supermercado 1"})
+})
+
 app.listen(3000, (req, res) => {
   console.log('SERVER RUNNING IN http://localhost:3000')
 })
