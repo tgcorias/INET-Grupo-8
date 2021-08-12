@@ -33,7 +33,7 @@ const connection = require("./database/db")
 
 //9- Estableciendo las rutas
 app.get("/", (req,res) => {
-    res.render("index")
+    res.render("index", {msg: "Supermercado 1"})
 })
 app.listen(3000, (req, res) => {
   console.log('SERVER RUNNING IN http://localhost:3000')
