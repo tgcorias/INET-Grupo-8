@@ -39,7 +39,7 @@ app.get("/login", (req,res) => {
     res.render("login")
 })
 app.get("/agregar", (req,res) => {
-    res.render("login")
+    res.render("agregar")
 })
 
 app.listen(3000, (req, res) => {
