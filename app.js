@@ -33,13 +33,13 @@ const connection = require("./database/db")
 
 //9- Estableciendo las rutas
 app.get("/", (req,res) => {
-    res.render("index", {msg: "Supermercado 1"})
+    res.render("index")
 })
 app.get("/login", (req,res) => {
-    res.render("login", {msg: "Supermercado 1"})
+    res.render("login")
 })
 app.get("/agregar", (req,res) => {
-    res.render("login", {msg: "Supermercado 1"})
+    res.render("login")
 })
 
 app.listen(3000, (req, res) => {
