@@ -53,17 +53,17 @@ app.post("/agregar", async (req, res)=>{
   const telefono = req.body.telefono;
   const capacidad_maxima = req.body.capacidad_maxima;
   const password = req.body.password;
-  let passwordHash = await bcryptjs.hash(password, 8);
+//  let passwordHash = await bcryptjs.hash(password, 8);
   connection.query("INSERT INTO locales_usuarios SET ?", {
-    nombre_local:nombre_local,
     nombre_responsable:nombre_responsable,
+    email:email,
+    nombre_local:nombre_local,
     direccion:direccion,
     ciudad:ciudad,
     provincia:provincia,
-    email:email,
     telefono:telefono,
     capacidad_maxima:capacidad_maxima,
-    pass_hash:passwordHash,
+    pass_hash:password,
   }, async(error,results)=>{
     if(error){
       console.log(error);
