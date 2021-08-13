@@ -32,9 +32,6 @@ app.use(session({
 const connection = require("./database/db");
 
 //9- Estableciendo las rutas
-app.get("/", (req,res) => {
-    res.render("index");
-})
 app.get("/login", (req,res) => {
     res.render("login");
 })
@@ -83,6 +80,7 @@ app.post("/auth", async(req,res)=>{
     connection.query("SELECT * FROM locales_usuarios WHERE email = ?", [correo], async(error, results)=>{
       if(results.length == 0 || !(await bcryptjs.compare(pass,results[0].pass_hash))){
         res.send("<script>alert('Correo y/o contraseña incorrecto/s'); window.location.href = '/login';</script>")
+        req.session.destroy();
       }else{
         req.session.loggedin = true;
         req.session.nombre_responsable = results[0].nombre_responsable;
@@ -91,6 +89,7 @@ app.post("/auth", async(req,res)=>{
     })
   }else{
     res.send("<script>alert('Por favor, ingrese un correo y contraseña'); window.location.href = '/login';</script>")
+    req.session.destroy();
   }
 })
 
@@ -102,10 +101,7 @@ app.get("/", (req, res)=>{
       nombre_responsable: req.session.nombre_responsable
     });
   }else{
-    res.render("index",{
-      login: false,
-      nombre_responsable: "Debe iniciar sesión"
-    })
+    res.render("login")
   }
 })
 
