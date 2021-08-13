@@ -54,7 +54,7 @@ app.post("/agregar", async (req, res)=>{
   const capacidad_maxima = req.body.capacidad_maxima
   const password = req.body.password
   let passwordHash = await bcryptjc.hash(password, 8)
-  connection.query("INSERT INTO tabla SET ?", {
+  connection.query("INSERT INTO locales_usuarios SET ?", {
     nombre_local:nombre_local,
     nombre_responsable:nombre_responsable,
     direccion:direccion,
