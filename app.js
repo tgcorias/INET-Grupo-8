@@ -74,6 +74,22 @@ app.post("/agregar", async (req, res)=>{
   })
 })
 
+//11- Autenticacion
+app.post("/", async(req,res)=>{
+  const correo = req.body.email;
+  const pass = req.body.password;
+  let passwordHash = await bcryptjs.hash(pass, 8);
+  if(correo && pass){
+    connection.query("SELECT * FROM locales_usuarios WHERE email = ?", [correo], async(error, results)=>{
+      if(results.length == 0 || !(await bcryptjs.compare(pass,results[0].pass_hash))){
+        res.send("<script>alert('INCORRECTO'); window.location.href = '/login';</script>")
+      }else{
+        res.render("index");
+      }
+    })
+  }
+})
+
 app.listen(3000, (req, res) => {
   console.log('SERVER RUNNING IN http://localhost:3000');
 })
