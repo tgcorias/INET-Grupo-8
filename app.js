@@ -82,13 +82,13 @@ app.post("/auth", async(req,res)=>{
   if(correo && pass){
     connection.query("SELECT * FROM locales_usuarios WHERE email = ?", [correo], async(error, results)=>{
       if(results.length == 0 || !(await bcryptjs.compare(pass,results[0].pass_hash))){
-        res.send("<script>alert('INCORRECTO'); window.location.href = '/login';</script>")
+        res.send("<script>alert('Correo y/o contraseña incorrecto/s'); window.location.href = '/login';</script>")
       }else{
-        res.render("index");
+        res.redirect("/");
       }
     })
   }else{
-    res.send("Por favor, ingrese un correo y contraseña")
+    res.send("<script>alert('Por favor, ingrese un correo y contraseña'); window.location.href = '/login';</script>")
   }
 })
 
