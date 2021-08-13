@@ -75,7 +75,7 @@ app.post("/agregar", async (req, res)=>{
 })
 
 //11- Autenticacion
-app.post("/", async(req,res)=>{
+app.post("/auth", async(req,res)=>{
   const correo = req.body.email;
   const pass = req.body.password;
   let passwordHash = await bcryptjs.hash(pass, 8);
@@ -87,6 +87,8 @@ app.post("/", async(req,res)=>{
         res.render("index");
       }
     })
+  }else{
+    res.send("Por favor, ingrese un correo y contraseña")
   }
 })
 
