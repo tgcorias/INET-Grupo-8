@@ -63,7 +63,7 @@ app.post("/agregar", async (req, res)=>{
     email:email,
     telefono:telefono,
     capacidad_maxima:capacidad_maxima,
-    pass:passwordHash,
+    pass_hash:passwordHash,
   }, async(error,results)=>{
     if(error){
       console.log(error);
