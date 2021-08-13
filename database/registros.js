@@ -1,21 +1,17 @@
-const mysql = require('mysql');
+const dotenv = require("dotenv");
+dotenv.config({path:"./env/.env"});
 
-const conection = mysql.createConnection({
-    host: 'localhost',
-    user: 'user',
-    password: 'user',
-    database: 'registro'
-})
+const connection = require("./db");
 
-conection.connect((err)=>{
+connection.query('SELECT * from registro',(err, rows)=>{
     if (err) throw err;
-    console.log("Conexión funcionando");
+    let hora=14
+    let suma=0
+    for(let i = 0; i<rows.length; i++){
+      if(rows[i].conteo>0 && rows[i].hora.slice(0,2) == hora){
+        suma += rows[i].conteo;
+        console.log(rows[i].hora.slice(0,2))
+      }
+    }
+    console.log(suma);
 });
-
-conection.query('SELECT * from registro',(err, rows)=>{
-    if (err) throw err;
-    console.log("Datos:");
-    console.log(rows);
-});
-
-conection.end();
