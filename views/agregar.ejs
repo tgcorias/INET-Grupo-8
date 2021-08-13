@@ -12,12 +12,12 @@
     <header>
         <div class="header__title--container">
             <a href="/"> <i class="fas fa-chevron-left fa-w-8 fa-3x"></i></a>
-            <h1>Administrar</h1> 
+            <h1>Administrar</h1>
         </div>
     </header>
 
     <section class="login">
-        <form action="" class="form">
+        <form action="agregar" class="form" method="POST">
 
                 <h2>Agregar un nuevo local:</h2>
 
@@ -29,10 +29,10 @@
                 <input type="text" placeholder="Teléfono" class="input" id="telefono">
                 <input type="text" placeholder="Dirección" class="input" id="direccion">
                 <input type="text" placeholder="Ciudad" class="input" id="ciudad">
-                <input type="text" placeholder="Provincia" class="input" id="provincia"> 
-            
+                <input type="text" placeholder="Provincia" class="input" id="provincia">
+
                 <br>
-                <button type="button" class="button"> Agregar </button>
+                <button type="submit" class="button" name="submit-button"> Agregar </button>
 
         </form>
     </section>
