@@ -84,11 +84,28 @@ app.post("/auth", async(req,res)=>{
       if(results.length == 0 || !(await bcryptjs.compare(pass,results[0].pass_hash))){
         res.send("<script>alert('Correo y/o contraseña incorrecto/s'); window.location.href = '/login';</script>")
       }else{
+        req.session.loggedin = true;
+        req.session.nombre_responsable = results[0].nombre_responsable;
         res.redirect("/");
       }
     })
   }else{
     res.send("<script>alert('Por favor, ingrese un correo y contraseña'); window.location.href = '/login';</script>")
+  }
+})
+
+//12- Autenticacion para el resto de las paginas
+app.get("/", (req, res)=>{
+  if(req.session.loggedin){
+    res.render("index",{
+      login: true,
+      nombre_responsable: req.session.nombre_responsable
+    });
+  }else{
+    res.render("index",{
+      login: false,
+      nombre_responsable: "Debe iniciar sesión"
+    })
   }
 })
 
