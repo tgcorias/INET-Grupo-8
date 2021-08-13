@@ -1,27 +1,27 @@
 //1- Invocamos a express
-const express = require("express")
-const app = express()
+const express = require("express");
+const app = express();
 
 //2- seteamos urlencode para capturar los datos del formulario
-app.use(express.urlencoded({extended:false}))
-app.use(express.json())
+app.use(express.urlencoded({extended:false}));
+app.use(express.json());
 
 //3- Invocamos a dotenv
-const dotenv = require("dotenv")
-dotenv.config({path:"./env/.env"})
+const dotenv = require("dotenv");
+dotenv.config({path:"./env/.env"});
 
 //4- El directorio public
-app.use("/resources", express.static("public"))
-app.use("/resources", express.static(__dirname + "/public"))
+app.use("/resources", express.static("public"));
+app.use("/resources", express.static(__dirname + "/public"));
 
 //5- Establecemos el motor de plantillas ejs
-app.set("view engine","ejs")
+app.set("view engine","ejs");
 
 //6- Invocamos a bcryptjs
-const bcryptjs = require("bcryptjs")
+const bcryptjs = require("bcryptjs");
 
 //7- Var. de session
-const session = require("express-session")
+const session = require("express-session");
 app.use(session({
   secret: "secret",
   resave: true,
@@ -32,9 +32,6 @@ app.use(session({
 const connection = require("./database/db");
 
 //9- Estableciendo las rutas
-app.get("/", (req,res) => {
-    res.render("index");
-})
 app.get("/login", (req,res) => {
     res.render("login");
 })
@@ -55,12 +52,12 @@ app.post("/agregar", async (req, res)=>{
   const password = req.body.password;
   let passwordHash = await bcryptjs.hash(password, 8);
   connection.query("INSERT INTO locales_usuarios SET ?", {
-    nombre_local:nombre_local,
     nombre_responsable:nombre_responsable,
+    email:email,
+    nombre_local:nombre_local,
     direccion:direccion,
     ciudad:ciudad,
     provincia:provincia,
-    email:email,
     telefono:telefono,
     capacidad_maxima:capacidad_maxima,
     pass_hash:passwordHash,
@@ -74,6 +71,40 @@ app.post("/agregar", async (req, res)=>{
   })
 })
 
+//11- Autenticacion
+app.post("/auth", async(req,res)=>{
+  const correo = req.body.email;
+  const pass = req.body.password;
+  let passwordHash = await bcryptjs.hash(pass, 8);
+  if(correo && pass){
+    connection.query("SELECT * FROM locales_usuarios WHERE email = ?", [correo], async(error, results)=>{
+      if(results.length == 0 || !(await bcryptjs.compare(pass,results[0].pass_hash))){
+        res.send("<script>alert('Correo y/o contraseña incorrecto/s'); window.location.href = '/login';</script>")
+        req.session.destroy();
+      }else{
+        req.session.loggedin = true;
+        req.session.nombre_responsable = results[0].nombre_responsable;
+        res.redirect("/");
+      }
+    })
+  }else{
+    res.send("<script>alert('Por favor, ingrese un correo y contraseña'); window.location.href = '/login';</script>")
+    req.session.destroy();
+  }
+})
+
+//12- Autenticacion para el resto de las paginas
+app.get("/", (req, res)=>{
+  if(req.session.loggedin){
+    res.render("index",{
+      login: true,
+      nombre_responsable: req.session.nombre_responsable
+    });
+  }else{
+    res.render("login")
+  }
+})
+
 app.listen(3000, (req, res) => {
-  console.log('SERVER RUNNING IN http://localhost:3000')
+  console.log('SERVER RUNNING IN http://localhost:3000');
 })
