@@ -119,7 +119,11 @@ app.get("/", (req, res)=>{
       });
       connection.query('SELECT * from registro WHERE id_local = ?', [req.session.id_usuario], (err, rows)=>{
           if (err) throw err;
-          console.log(req.session.id_usuario);
+          suma = 0;
+          for(let i=0; i<rows.length; i++){
+            suma += rows[i].conteo;
+          }
+          console.log(suma);
       });
     }
   }else{
