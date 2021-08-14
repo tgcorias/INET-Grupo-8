@@ -114,15 +114,16 @@ app.get("/", (req, res)=>{
         login: true,
       });
     }else{
-      connection.query('SELECT * from registro WHERE id_local = ?', [req.session.id_usuario], (err, rows)=>{
+      connection.query('SELECT * from registro WHERE id_local = ?', [req.session.id_usuario], async (err, rows)=>{
           if (err) throw err;
           let suma = 0;
           for(let i=0; i<rows.length; i++){
             suma += rows[i].conteo;
           }
+          app.locals.suma = suma;
           console.log(suma);
       });
-      res.render("indexUsuario",{
+      res.render("indexUsuario.ejs",{
         login: true,
       });
     }
