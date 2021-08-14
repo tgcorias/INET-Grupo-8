@@ -108,9 +108,15 @@ app.post("/auth", async(req,res)=>{
 //12- Autenticacion para el resto de las paginas
 app.get("/", (req, res)=>{
   if(req.session.loggedin){
-    res.render("index",{
-      login: true,
-    });
+    if(req.session.es_admin){
+      res.render("indexAdmin",{
+        login: true,
+      });
+    }else{
+      res.render("indexUsuario",{
+        login: true,
+      });
+    }
   }else{
     res.render("login")
   }
