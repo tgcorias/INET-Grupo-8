@@ -9,6 +9,11 @@
   </head>
   <body>
     <h1>DOU INDEX USUARIO</h1>
-    <h1 id=numero><%= suma %></h1>
+    <% if (typeof suma !== "undefined") {%>
+    <h1><%= suma %> XD</h1>
+    <%} else {%>
+    <h1>Cargando...</h1>
+    <%}%>
+    </script>
   </body>
 </html>
