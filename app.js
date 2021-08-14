@@ -87,7 +87,7 @@ app.post("/auth", async(req,res)=>{
         req.session.destroy();
       }else{
         req.session.loggedin = true;
-        req.session.id_usuario = results[0].id_usuario;
+        req.session.id_usuario = results[0].id;
         req.session.nombre_responsable = results[0].nombre_responsable;
         req.session.email = results[0].email;
         req.session.nombre_local = results[0].nombre_local;
@@ -119,7 +119,7 @@ app.get("/", (req, res)=>{
       });
       connection.query('SELECT * from registro WHERE id_local = ?', [req.session.id_usuario], (err, rows)=>{
           if (err) throw err;
-          console.log("XD")
+          console.log(req.session.id_usuario);
       });
     }
   }else{
