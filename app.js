@@ -36,7 +36,11 @@ app.get("/login", (req,res) => {
     res.render("login");
 })
 app.get("/agregar", (req,res) => {
+  if(req.session.es_admin){
     res.render("agregar");
+  }else{
+    res.send("No tiene acceso a esta página")
+  }
 })
 
 //10- Registro
@@ -84,6 +88,14 @@ app.post("/auth", async(req,res)=>{
       }else{
         req.session.loggedin = true;
         req.session.nombre_responsable = results[0].nombre_responsable;
+        req.session.email = results[0].email;
+        req.session.nombre_local = results[0].nombre_local;
+        req.sessiondireccion = results[0].direccion;
+        req.session.ciudad = results[0].ciudad;
+        req.session.provincia = results[0].provincia;
+        req.session.telefono = results[0].telefono;
+        req.session.capacidad_maxima = results[0].capacidad_maxima;
+        req.session.es_admin = results[0].es_admin;
         res.redirect("/");
       }
     })
@@ -98,7 +110,6 @@ app.get("/", (req, res)=>{
   if(req.session.loggedin){
     res.render("index",{
       login: true,
-      nombre_responsable: req.session.nombre_responsable
     });
   }else{
     res.render("login")
