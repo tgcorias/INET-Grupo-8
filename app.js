@@ -121,7 +121,6 @@ app.get("/", (req, res)=>{
             suma += rows[i].conteo;
           }
           app.locals.suma = suma;
-          console.log(suma);
       });
       res.render("indexUsuario.ejs",{
         login: true,
