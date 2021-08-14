@@ -42,6 +42,9 @@ app.get("/agregar", (req,res) => {
     res.send("No tiene acceso a esta página")
   }
 })
+app.get("/estadisticas", (req,res) => {
+    res.render("estadisticas");
+})
 
 //10- Registro
 app.post("/agregar", async (req, res)=>{
