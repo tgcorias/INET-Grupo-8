@@ -1,0 +1,23 @@
+.container{
+    padding-top: 10%;
+    box-sizing: border-box;
+}
+.local{
+    width: 80%;
+    height: 60px;
+    margin-bottom: 5%;
+    background-color: rgb(174, 174, 174);
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    font-weight: 400;
+}
+.local:hover{
+    transition: 350ms;
+    background-color: rgba(0, 0, 0, .5);
+    color: white;
+    text-decoration: underline;
+}
