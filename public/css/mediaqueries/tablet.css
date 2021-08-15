@@ -1,13 +1,14 @@
 /* Página /indexAdmin responsive */
 .box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 400px;
     margin: 3%;
 }
-.box__img{
-    margin-top: 5%;
-}
+
 .header__title--container{
-    display: flex; 
+    display: flex;
     justify-content: center;
 }
 .header__title--container h1{
