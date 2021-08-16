@@ -58,10 +58,11 @@ app.get("/estadisticas", (req,res) => {
         if (err) throw err;
         let clientesSegunHora = new Array(24).fill(0);
         for(let i=0; i<rows.length;i++){
-          clientesSegunHora[rows[i].hora.slice(0,2)] += rows[i].conteo;
+          clientesSegunHora[parseInt(rows[i].hora.slice(0,2))] += rows[i].conteo;
           }
           app.locals.clientesSegunHora = clientesSegunHora;
-
+          console.log(rows);
+          console.log(clientesSegunHora);
       });
       res.render("estadisticas",{
         login: true,
