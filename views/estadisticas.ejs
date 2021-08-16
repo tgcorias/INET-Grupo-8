@@ -23,7 +23,7 @@
         <div class="graphcontainer">
             <canvas id="grafico" width="600" height="600"></canvas>
         </div>
-
+        <a href="/estadisticas">Click para cargar nuevos resultados</a>
      </section>
 
 
@@ -35,10 +35,10 @@
         var myChart = new Chart(ctx, {
          type: 'bar',
          data: {
-             labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange', 'Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange', 'Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange', 'Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+             labels: [...Array(24).keys()],
              datasets: [{
-                 label: '# of Votes',
-                 data: [12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3],
+                 label: 'Clientes totales',
+                 data: [<% if(typeof clientesSegunHora !== "undefined") {%><%= clientesSegunHora%><%}%>],
                  backgroundColor: [
                      'rgba(255, 99, 132, 0.2)',
                      'rgba(54, 162, 235, 0.2)',

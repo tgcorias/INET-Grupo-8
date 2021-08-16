@@ -54,9 +54,13 @@ app.get("/estadisticas", (req,res) => {
       let cMonth = currentDate.getMonth() + 1;
       let cYear = currentDate.getFullYear();
       let fechaHoy = cYear + "." + cMonth + "." + cDay;
-      connection.query("SELECT * from registro WHERE id_local = " + req.session.id_usuario + " AND fecha = '" + fechaHoy + "'", async (err, rows)=>{
+      connection.query("SELECT * from registro WHERE id_local = " + req.session.id_usuario + " AND fecha = '" + fechaHoy + "' AND conteo > 0", async (err, rows)=>{
         if (err) throw err;
-          console.log(rows);
+        let clientesSegunHora = new Array(24).fill(0);
+        for(let i=0; i<rows.length;i++){
+          clientesSegunHora[rows[i].hora.slice(0,2)] += rows[i].conteo;
+          }
+          app.locals.clientesSegunHora = clientesSegunHora;
 
       });
       res.render("estadisticas",{
