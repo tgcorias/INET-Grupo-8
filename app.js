@@ -43,7 +43,29 @@ app.get("/agregar", (req,res) => {
   }
 })
 app.get("/estadisticas", (req,res) => {
-    res.render("estadisticas");
+  if(req.session.loggedin){
+    if(req.session.es_admin){
+      res.render("indexAdmin",{
+        login: true,
+      });
+    }else{
+      let currentDate = new Date();
+      let cDay = currentDate.getDate();
+      let cMonth = currentDate.getMonth() + 1;
+      let cYear = currentDate.getFullYear();
+      let fechaHoy = cYear + "." + cMonth + "." + cDay;
+      connection.query("SELECT * from registro WHERE id_local = " + req.session.id_usuario + " AND fecha = '" + fechaHoy + "'", async (err, rows)=>{
+        if (err) throw err;
+          console.log(rows);
+
+      });
+      res.render("estadisticas",{
+        login: true,
+      });
+    }
+  }else{
+    res.render("login")
+  }
 })
 
 //10- Registro
