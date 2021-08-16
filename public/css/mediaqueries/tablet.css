@@ -37,3 +37,10 @@
     height: 300px;
 
 }
+/* Página /locales responsive */
+
+.local{
+    width: 60%;
+    height: 300px;
+    margin-bottom: 2%;
+}

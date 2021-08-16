@@ -1,10 +1,11 @@
 .container{
-    padding-top: 10%;
+    height: 100vh;
+    padding-top: 5%;
     box-sizing: border-box;
 }
 .local{
     width: 80%;
-    height: 60px;
+    height: 100px;
     margin-bottom: 5%;
     background-color: rgb(174, 174, 174);
     border-radius: 4px;
@@ -13,7 +14,13 @@
     align-items: center;
     text-decoration: none;
     color: black;
-    font-weight: 400;
+    font-weight: 600;
+}
+.ejemplo{
+    background-color: rgba(179, 255, 102, 0.618);
+}
+.ejemplo2{
+    background-color: rgba(252, 157, 123, 0.734);
 }
 .local:hover{
     transition: 350ms;
