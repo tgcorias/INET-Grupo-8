@@ -1,0 +1,43 @@
+.container{
+    width: 100%;
+    height: 100vh;
+    padding-top: 5%;
+    box-sizing: border-box;
+}
+.refresh__container{
+    width: 100%;
+    margin-top: 5%;   
+}
+.refresh__container a{
+    color: white;
+}
+.refresh__container a:hover{
+    color: black;
+}
+form{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+button{
+    width: 80%;
+    height: 100px;
+    margin-bottom: 5%;
+    background-color: rgb(174, 174, 174);
+    border-radius: 6px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+}
+button:hover{
+    transition: 350ms;
+    background-color: rgba(0, 0, 0, .5);
+    color: white;
+    text-decoration: underline;
+}

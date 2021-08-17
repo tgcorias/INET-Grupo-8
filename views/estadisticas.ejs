@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="resources/css/style.css">
+    <link rel="stylesheet" href="resources/css/stats.css">
+    <link rel="stylesheet" href="resources/css/agregar.css">
+    <link rel="stylesheet" href="resources/css/mediaqueries/tablet.css">
+    <title>Stats Page</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta http-equiv="refresh" content="120">
+</head>
+<body>
+
+    <header>
+        <div class="header__title--container">
+            <a href="/"> <i class="fas fa-chevron-left fa-w-8 fa-3x"></i></a>
+            <h1>Administrar</h1>
+        </div>
+     </header>
+
+
+     <section class="container">
+
+       <form class="" action="cargarEstadistica" method="post">
+         <input type="date" name="fecha" value="" class="input">
+         <button type="submit" name="button" class="button">Aceptar</button>
+       </form>
+       <%if(typeof fechaSolicitada !== "undefined") {%>
+       <h2><%= fechaSolicitada %></h2>
+       <%} else {%>
+         <h2>Elija la fecha</h2>
+       <%}%>
+
+        <div class="graphcontainer">
+            <canvas id="grafico" width="600" height="600"></canvas>
+        </div>
+     </section>
+
+
+
+     <script src="https://kit.fontawesome.com/5e2793018e.js" crossorigin="anonymous"></script>
+
+     <script>
+        var ctx = document.getElementById('grafico').getContext('2d');
+        var myChart = new Chart(ctx, {
+         type: 'bar',
+         data: {
+             labels: [...Array(24).keys()],
+             datasets: [{
+                 label: 'Clientes totales',
+                 data: [<% if(typeof clientesSegunHora !== "undefined") {%><%= clientesSegunHora%><%}%>],
+                 backgroundColor: [
+                     'rgba(255, 99, 132, 0.2)',
+                     'rgba(54, 162, 235, 0.2)',
+                     'rgba(255, 206, 86, 0.2)',
+                     'rgba(75, 192, 192, 0.2)',
+                     'rgba(153, 102, 255, 0.2)',
+                     'rgba(255, 159, 64, 0.2)',
+                 ],
+                 borderColor: [
+                     'rgba(255, 99, 132, 1)',
+                     'rgba(54, 162, 235, 1)',
+                     'rgba(255, 206, 86, 1)',
+                     'rgba(75, 192, 192, 1)',
+                     'rgba(153, 102, 255, 1)',
+                     'rgba(255, 159, 64, 1)'
+                 ],
+                 borderWidth: 1
+             }]
+         },
+         options: {
+             scales: {
+                 y: {
+                     beginAtZero: true
+                 }
+             }
+         }
+        });
+     </script>
+</body>
+</html>

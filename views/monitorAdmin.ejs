@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/resources/css/style.css">
+    <link rel="stylesheet" href="/resources/css/userIndex.css">
+    <link rel="stylesheet" href="/resources/css/mediaqueries/tablet.css">
+    <meta http-equiv="refresh" content="1">
+    <title>User Page</title>
+
+  </head>
+  <body>
+
+    <header>
+        <div class="header__title--container">
+            <a href="/locales"> <i class="fas fa-chevron-left fa-w-8 fa-3x"></i></a>
+            <h1>Administrar</h1>
+        </div>
+     </header>
+
+     <section class="subheader__container">
+      <div class="subheader">
+        <% if(typeof nombre_local !== "undefined") {%>
+        <h3><%= nombre_local %></h3>
+        <%}else{%>
+        <script type="text/javascript"> window.location.reload(true) </script>
+        <%}%>
+      </div>
+  </section>
+
+     <section class="container">
+
+          <div class="contador">
+
+                    <div class="Actuales">
+                      <% if(typeof suma !== "undefined") {%>
+                        <h1><%= suma %></h1>
+                      <%}%>
+                        <h4>Actuales</h4>
+                    </div>
+
+
+                    <div class="Maximas">
+                      <% if(typeof capacidad_maxima !== "undefined") {%>
+                        <h1 id="personasMaximas"><%= capacidad_maxima %></h1>
+                      <%}%>
+                        <h4>Máximas</h4>
+                    </div>
+
+          </div>
+
+          <h1 id="alerta" style="color: red; font-size:40px"></h1>
+
+     </section>
+
+
+
+        <button onclick="location.href='/estadisticas'" class="stats">
+            Estadísticas
+        </button>
+
+
+
+        <script src="https://kit.fontawesome.com/5e2793018e.js" crossorigin="anonymous"></script>
+
+        <% if(typeof suma !== "undefined" && typeof capacidad_maxima !== "undefined") {%>
+        <script type="text/javascript">
+
+          let genteActual = <%= suma %>;
+          let genteMaxima = <%= capacidad_maxima %>;
+          if (genteActual > genteMaxima) {
+            document.getElementById("alerta").innerText = "SE HA EXCEDIDO LA CAPADIDAD MÁXIMA";
+          }
+          </script>
+        <%}%>
+
+  </body>
+</html>

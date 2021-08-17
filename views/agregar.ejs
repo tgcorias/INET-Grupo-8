@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="resources/css/style.css">
+    <link rel="stylesheet" href="resources/css/agregar.css">
+    <link rel="stylesheet" href="resources/css/mediaqueries/tablet.css" media="(min-width: 600px)">
+
+    <title>Agregar</title>
+</head>
+<body>
+    <header>
+        <div class="header__title--container">
+            <a href="/"> <i class="fas fa-chevron-left fa-w-8 fa-3x"></i></a>
+            <h1>Administrar</h1>
+        </div>
+    </header>
+
+    <section class="login">
+        <form action="agregar"  method="POST" class="formAgregar">
+
+                <h2>Agregar un nuevo local:</h2>
+
+                <input type="text" placeholder="Nombre del local" class="input" name="nombre_local">
+                <input type="text" placeholder="Correo" class="input" name="email">
+                <input type="password" placeholder="Llave de acceso" class="input" name="password">
+                <input type="text" placeholder="Nombre del responsable" class="input" name="nombre_responsable">
+                <input type="text" placeholder="Capacidad Máxima" class="input" name="capacidad_maxima">
+                <input type="text" placeholder="Teléfono" class="input" name="telefono">
+                <input type="text" placeholder="Dirección" class="input" name="direccion">
+                <input type="text" placeholder="Ciudad" class="input" name="ciudad">
+                <input type="text" placeholder="Provincia" class="input" name="provincia">
+
+                <br>
+                <button type="submit" class="button" name="submit-button"> Agregar </button>
+
+        </form>
+    </section>
+
+
+    <script src="https://kit.fontawesome.com/5e2793018e.js" crossorigin="anonymous"></script>
+
+</body>
+</html>

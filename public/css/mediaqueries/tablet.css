@@ -1,0 +1,51 @@
+/* Página /indexAdmin responsive */
+.box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    margin: 3%;
+}
+
+.header__title--container{
+    display: flex;
+    justify-content: center;
+}
+.header__title--container h1{
+   margin: 0% 5% 0% 6%;
+}
+
+/* Página /agregar responsive */
+
+.input{
+    width: 80%;
+    height: 40px;
+    margin-bottom: 2%;
+    font-size: 20px;
+}
+.formAgregar{
+    width: 100%;
+}
+
+/* Página /login responsive */
+
+.input__container{
+    margin-bottom: 1%;
+}
+.form{
+    width: 40%;
+    height: 300px;
+
+}
+/* Página /locales responsive */
+
+.local{
+    width: 60%;
+    height: 100px;
+    margin-bottom: 2%;
+}
+
+/*/UserIndex Responsive*/
+.subheader{
+    width: 30%;
+}
