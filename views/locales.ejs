@@ -24,29 +24,16 @@
 
       <% if(typeof listaLocales !== "undefined") {%>
       <% for(let i=0; i<listaLocales.length; i++) {%>
-      <button type="submit" class="local" id=<%= listaLocales[i].id %>><%= listaLocales[i].nombre_local%></button>
+        <form action="cargarEstadisticas"  method="POST">
+        <button type="submit" name="<%= listaLocales[i].id %>" class="local"><%= listaLocales[i].nombre_local%></button>
+      </form>
       <%}} else {%>
         <script type="text/javascript"> window.location.reload(true) </script>
       <%}%>
 
     </section>
 
-
-
      <script src="https://kit.fontawesome.com/5e2793018e.js" crossorigin="anonymous"></script>
-     <script type="text/javascript">
-
-     document.getElementById("contenedor").addEventListener("click", detectarClick);
-
-     function detectarClick(evento){
-       let idClick = evento.path[0].id;
-       if(idClick!=="contenedor"){
-         console.log(idClick);
-         window.location = "/monitorAdmin";
-       }
-     }
-
-     </script>
 
 </body>
 </html>
