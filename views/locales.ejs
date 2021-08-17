@@ -10,44 +10,26 @@
     <title>Locales</title>
 </head>
 <body>
-    
+
     <header>
         <div class="header__title--container">
-            <a href="/indexAdmin"> <i class="fas fa-chevron-left fa-w-8 fa-3x"></i></a>
+            <a href="/"> <i class="fas fa-chevron-left fa-w-8 fa-3x"></i></a>
             <h1>Administrar</h1>
         </div>
      </header>
 
+     <a href="/locales">Click aquí para obtener nuevos resultados</a>
 
     <section class="container">
 
+      <% if(typeof listaNombres !== "undefined") {%>
+      <% for(let i=0; i<listaNombres.length; i++) {%>
+      <a href="#" class="local"><%= listaNombres[i]%></a>
+      <%}} else {%>
+        <script type="text/javascript"> window.location.reload(true) </script>
+      <%}%>
 
-        <a class="local ejemplo" href="#"> 
-            Carlos Mercadito
-        </a>
-
-        <a class="local ejemplo2" href="#">
-            Super Ultra
-        </a>
-
-        <a class="local" href="#">
-            Local
-        </a>
-
-        <a class="local" href="#">
-            Local
-        </a>
-
-        <a class="local" href="#">
-            Local
-        </a>
-
-        <a class="local" href="#">
-            Local
-        </a>
-
-
-    </section>     
+    </section>
 
 
 

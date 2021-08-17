@@ -35,6 +35,7 @@ const connection = require("./database/db");
 app.get("/login", (req,res) => {
     res.render("login");
 })
+
 app.get("/agregar", (req,res) => {
   if(req.session.es_admin){
     res.render("agregar");
@@ -42,6 +43,22 @@ app.get("/agregar", (req,res) => {
     res.send("No tiene acceso a esta página")
   }
 })
+
+app.get("/locales", (req,res) => {
+  if(req.session.es_admin){
+    connection.query("SELECT nombre_local FROM locales_usuarios WHERE id <> 1",(err, rows)=>{
+      let listaNombres = [];
+      for(let i=0; i<rows.length; i++){
+        listaNombres.push(rows[i].nombre_local);
+      }
+      app.locals.listaNombres = listaNombres;
+    });
+    res.render("locales");
+  }else{
+    res.send("No autorizade");
+  }
+})
+
 app.get("/estadisticas", (req,res) => {
   if(req.session.loggedin){
     if(req.session.es_admin){
