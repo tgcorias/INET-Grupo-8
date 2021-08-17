@@ -48,7 +48,6 @@ app.get("/locales", (req,res) => {
   if(req.session.es_admin){
     connection.query("SELECT nombre_local, id FROM locales_usuarios WHERE id <> 1",(err, rows)=>{
       app.locals.listaLocales = rows;
-      console.log(rows);
     });
     res.render("locales");
   }else{
@@ -58,6 +57,10 @@ app.get("/locales", (req,res) => {
 
 app.get("/monitorAdmin", (req,res) => {
   if(req.session.es_admin){
+    connection.query('SELECT * from registro', async (err, rows)=>{
+        if (err) throw err;
+        app.locals.informacion = rows;
+      });
     res.render("monitorAdmin");
   }else{
     res.send("No autorizade");
