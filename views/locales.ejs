@@ -20,11 +20,11 @@
 
      <a href="/locales">Click aquí para obtener nuevos resultados</a>
 
-    <section class="container">
+    <section class="container" id="contenedor">
 
       <% if(typeof listaLocales !== "undefined") {%>
       <% for(let i=0; i<listaLocales.length; i++) {%>
-      <a href="/monitorAdmin" class="local"><%= listaLocales[i].nombre_local%></a>
+      <a class="local" id=<%= listaLocales[i].id %>><%= listaLocales[i].nombre_local%></a>
       <%}} else {%>
         <script type="text/javascript"> window.location.reload(true) </script>
       <%}%>
@@ -34,6 +34,19 @@
 
 
      <script src="https://kit.fontawesome.com/5e2793018e.js" crossorigin="anonymous"></script>
+     <script type="text/javascript">
+
+     document.getElementById("contenedor").addEventListener("click", detectarClick);
+
+     function detectarClick(evento){
+       let idPath = evento.path[0].id;
+       if(idPath!=="contenedor"){
+         console.log(idPath);
+         window.location = "/monitorAdmin";
+       }
+     }
+
+     </script>
 
 </body>
 </html>

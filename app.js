@@ -83,8 +83,6 @@ app.get("/estadisticas", (req,res) => {
           clientesSegunHora[parseInt(rows[i].hora.slice(0,2))] += rows[i].conteo;
           }
           app.locals.clientesSegunHora = clientesSegunHora;
-          console.log(rows);
-          console.log(clientesSegunHora);
       });
       res.render("estadisticas",{
         login: true,
