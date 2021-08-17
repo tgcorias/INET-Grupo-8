@@ -46,14 +46,19 @@ app.get("/agregar", (req,res) => {
 
 app.get("/locales", (req,res) => {
   if(req.session.es_admin){
-    connection.query("SELECT nombre_local FROM locales_usuarios WHERE id <> 1",(err, rows)=>{
-      let listaNombres = [];
-      for(let i=0; i<rows.length; i++){
-        listaNombres.push(rows[i].nombre_local);
-      }
-      app.locals.listaNombres = listaNombres;
+    connection.query("SELECT nombre_local, id FROM locales_usuarios WHERE id <> 1",(err, rows)=>{
+      app.locals.listaLocales = rows;
+      console.log(rows);
     });
     res.render("locales");
+  }else{
+    res.send("No autorizade");
+  }
+})
+
+app.get("/monitorAdmin", (req,res) => {
+  if(req.session.es_admin){
+    res.render("monitorAdmin");
   }else{
     res.send("No autorizade");
   }

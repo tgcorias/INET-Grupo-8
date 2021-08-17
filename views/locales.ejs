@@ -22,9 +22,9 @@
 
     <section class="container">
 
-      <% if(typeof listaNombres !== "undefined") {%>
-      <% for(let i=0; i<listaNombres.length; i++) {%>
-      <a href="#" class="local"><%= listaNombres[i]%></a>
+      <% if(typeof listaLocales !== "undefined") {%>
+      <% for(let i=0; i<listaLocales.length; i++) {%>
+      <a href="/monitorAdmin" class="local"><%= listaLocales[i].nombre_local%></a>
       <%}} else {%>
         <script type="text/javascript"> window.location.reload(true) </script>
       <%}%>
