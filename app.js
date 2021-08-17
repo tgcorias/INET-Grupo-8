@@ -174,10 +174,10 @@ app.get("/", (req, res)=>{
             suma += rows[i].conteo;
           }
           app.locals.suma = suma;
-        connection.query("SELECT capacidad_maxima FROM locales_usuarios WHERE id = ?", [req.session.id_usuario], async (err,rows)=>{
+          connection.query("SELECT capacidad_maxima FROM locales_usuarios WHERE id = ?", [req.session.id_usuario], async (err,rows)=>{
           if (err) throw err;
           app.locals.capacidad_maxima = rows[0].capacidad_maxima;
-        })
+        });
       });
       res.render("indexUsuario.ejs",{
         login: true,
@@ -189,7 +189,7 @@ app.get("/", (req, res)=>{
 })
 
 //13- Cargar página de estadísticas según usuario para el admin
-app.post("/cargarEstadisticas",async(req,res)=>{
+app.post("/cargarContadorAdmin",async(req,res)=>{
   let idLocal = parseInt(Object.keys(req.body));
   connection.query('SELECT * from registro WHERE id_local = ?', [idLocal], async (err, rows)=>{
       if (err) throw err;
@@ -198,6 +198,10 @@ app.post("/cargarEstadisticas",async(req,res)=>{
         suma += rows[i].conteo;
       }
       app.locals.suma = suma;
+      connection.query("SELECT capacidad_maxima FROM locales_usuarios WHERE id = ?", [idLocal], async (err,rows)=>{
+        if (err) throw err;
+        app.locals.capacidad_maxima = rows[0].capacidad_maxima;
+      });
   });
   res.redirect("monitorAdmin");
 });

@@ -24,7 +24,7 @@
 
       <% if(typeof listaLocales !== "undefined") {%>
       <% for(let i=0; i<listaLocales.length; i++) {%>
-        <form action="cargarEstadisticas"  method="POST">
+        <form action="cargarContadorAdmin"  method="POST">
         <button type="submit" name="<%= listaLocales[i].id %>" class="local"><%= listaLocales[i].nombre_local%></button>
       </form>
       <%}} else {%>
