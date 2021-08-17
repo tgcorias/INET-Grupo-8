@@ -39,9 +39,9 @@
      document.getElementById("contenedor").addEventListener("click", detectarClick);
 
      function detectarClick(evento){
-       let idPath = evento.path[0].id;
-       if(idPath!=="contenedor"){
-         console.log(idPath);
+       let idClick = evento.path[0].id;
+       if(idClick!=="contenedor"){
+         console.log(idClick);
          window.location = "/monitorAdmin";
        }
      }
