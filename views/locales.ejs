@@ -24,7 +24,7 @@
 
       <% if(typeof listaLocales !== "undefined") {%>
       <% for(let i=0; i<listaLocales.length; i++) {%>
-      <a class="local" id=<%= listaLocales[i].id %>><%= listaLocales[i].nombre_local%></a>
+      <button type="submit" class="local" id=<%= listaLocales[i].id %>><%= listaLocales[i].nombre_local%></button>
       <%}} else {%>
         <script type="text/javascript"> window.location.reload(true) </script>
       <%}%>
