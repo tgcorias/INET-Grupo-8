@@ -167,9 +167,10 @@ app.get("/", (req, res)=>{
             suma += rows[i].conteo;
           }
           app.locals.suma = suma;
-          connection.query("SELECT capacidad_maxima FROM locales_usuarios WHERE id = ?", [req.session.id_usuario], async (err,rows)=>{
+          connection.query("SELECT * FROM locales_usuarios WHERE id = ?", [req.session.id_usuario], async (err,rows)=>{
           if (err) throw err;
           app.locals.capacidad_maxima = rows[0].capacidad_maxima;
+          app.locals.nombre_local = rows[0].nombre_local;
         });
       });
       res.render("indexUsuario.ejs",{
