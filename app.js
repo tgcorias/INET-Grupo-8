@@ -125,7 +125,7 @@ app.get("/estadisticas", (req,res) => {
 
       res.render("estadisticas",{
         login: true,
-        
+
       });
 
     }else{
@@ -197,7 +197,7 @@ app.post("/auth", async(req,res)=>{
   let passwordHash = await bcryptjs.hash(pass, 8);
 
   if(correo && pass){
-    
+
       connection.query("SELECT * FROM locales_usuarios WHERE email = ?", [correo], async(error, results)=>{
 
       if(results.length == 0 || !(await bcryptjs.compare(pass,results[0].pass_hash))){
@@ -240,7 +240,7 @@ app.post("/auth", async(req,res)=>{
 
 
 
-//12- Autenticacion para el resto de las paginas
+//12- Ruta para la página principal
 app.get("/", (req, res)=>{
 
   if(req.session.loggedin){
@@ -270,7 +270,7 @@ app.get("/", (req, res)=>{
 
           app.locals.capacidad_maxima = rows[0].capacidad_maxima;
           app.locals.nombre_local = rows[0].nombre_local;
-          
+
         });
 
       });
@@ -281,7 +281,7 @@ app.get("/", (req, res)=>{
       });
     }
   }else{
-    
+
     res.render("login")
 
   }
@@ -301,7 +301,7 @@ app.post("/cargarContadorAdmin",async(req,res)=>{
 
           if (err) throw err;
           let suma = 0;
-          
+
          for(let i=0; i<rows.length; i++){
           suma += rows[i].conteo;
 
@@ -317,7 +317,7 @@ app.post("/cargarContadorAdmin",async(req,res)=>{
         app.locals.nombre_local = rows[0].nombre_local;
 
       });
-      
+
   });
 
   res.redirect("monitorAdmin");
@@ -336,8 +336,8 @@ app.post("/cargarEstadistica",(req,res)=>{
     app.locals.fechaSolicitada = req.session.fechaSolicitada;
 
     connection.query("SELECT * from registro WHERE id_local = " + req.session.id_usuario + " AND fecha = '" + req.session.fechaSolicitada + "' AND conteo > 0", async (err, rows)=>{
-      
-      
+
+
       if (err) throw err;
       let clientesSegunHora = new Array(24).fill(0);
 
@@ -356,7 +356,7 @@ app.post("/cargarEstadistica",(req,res)=>{
     app.locals.fechaSolicitada = req.session.fechaSolicitada;
 
     connection.query("SELECT * from registro WHERE id_local = " + idLocal + " AND fecha = '" + req.session.fechaSolicitada + "' AND conteo > 0", async (err, rows)=>{
-     
+
       if (err) throw err;
       let clientesSegunHora = new Array(24).fill(0);
 
