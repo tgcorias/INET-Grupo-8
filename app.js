@@ -184,6 +184,11 @@ app.get("/", (req, res)=>{
   }
 })
 
+//13- Cargar página de estadísticas según usuario para el admin
+app.post("/cargarEstadisticas",async(req,res)=>{
+  console.log(parseInt(Object.keys(req.body)));
+})
+
 app.listen(3000, (req, res) => {
   console.log('SERVER RUNNING IN http://localhost:3000');
 })
