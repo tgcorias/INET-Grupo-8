@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/resources/css/style.css">
     <link rel="stylesheet" href="/resources/css/userIndex.css">
+    <link rel="stylesheet" href="/resources/css/mediaqueries/tablet.css">
     <meta http-equiv="refresh" content="1">
     <title>User Page</title>
 
@@ -18,11 +19,23 @@
             </header>
 
 
+<<<<<<< HEAD
             <section class="subheader__container">
               <div class="subheader">
                   <h3>Nombe del local</h3>
               </div>
             </section>  
+=======
+     <section class="subheader__container">
+      <div class="subheader">
+          <% if(typeof nombre_local !== "undefined") {%>
+          <h3><%= nombre_local %></h3>
+          <%}else{%>
+          <script type="text/javascript"> window.location.reload(true) </script>
+          <%}%>
+      </div>
+    </section>
+>>>>>>> d378e64cd5b747921ca761ac78d9113a653be8fa
 
 
 
@@ -46,9 +59,15 @@
                                 <h4>Máximas</h4>
                             </div>
 
+<<<<<<< HEAD
                   </div>
 
             </section>
+=======
+          <h1 id="alerta" style="color: red; font-size:40px"></h1>
+
+     </section>
+>>>>>>> d378e64cd5b747921ca761ac78d9113a653be8fa
 
 
 
@@ -56,13 +75,23 @@
             Estadísticas
         </button>
 
+        <% if(typeof suma !== "undefined" && typeof capacidad_maxima !== "undefined") {%>
         <script type="text/javascript">
+          let genteActual = <%= suma %>;
+          let genteMaxima = <%= capacidad_maxima %>;
+          if (genteActual > genteMaxima) {
+            document.getElementById("alerta").innerText = "SE HA EXCEDIDO LA CAPADIDAD MÁXIMA"
+          }
 
         </script>
+<<<<<<< HEAD
 
 
 
 
+=======
+        <%}%>
+>>>>>>> d378e64cd5b747921ca761ac78d9113a653be8fa
 
   </body>
 </html>
