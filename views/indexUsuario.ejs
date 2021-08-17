@@ -61,6 +61,7 @@
             Estadísticas
         </button>
 
+        <% if(typeof suma !== "undefined" && typeof capacidad_maxima !== "undefined") {%>
         <script type="text/javascript">
           let genteActual = <%= suma %>;
           let genteMaxima = <%= capacidad_maxima %>;
@@ -69,5 +70,7 @@
           }
 
         </script>
+        <%}%>
+
   </body>
 </html>
