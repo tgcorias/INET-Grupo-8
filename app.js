@@ -186,8 +186,17 @@ app.get("/", (req, res)=>{
 
 //13- Cargar página de estadísticas según usuario para el admin
 app.post("/cargarEstadisticas",async(req,res)=>{
-  console.log(parseInt(Object.keys(req.body)));
-})
+  let idLocal = parseInt(Object.keys(req.body));
+  connection.query('SELECT * from registro WHERE id_local = ?', [idLocal], async (err, rows)=>{
+      if (err) throw err;
+      let suma = 0;
+      for(let i=0; i<rows.length; i++){
+        suma += rows[i].conteo;
+      }
+      app.locals.suma = suma;
+  });
+  res.redirect("monitorAdmin");
+});
 
 app.listen(3000, (req, res) => {
   console.log('SERVER RUNNING IN http://localhost:3000');
