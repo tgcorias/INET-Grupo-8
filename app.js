@@ -167,13 +167,17 @@ app.get("/", (req, res)=>{
         login: true,
       });
     }else{
-      connection.query('SELECT * from registro WHERE id_local = ?', [req.session.id_usuario], async (err, rows)=>{
+      connection.query('SELECT * FROM registro WHERE id_local = ?', [req.session.id_usuario], async (err, rows)=>{
           if (err) throw err;
           let suma = 0;
           for(let i=0; i<rows.length; i++){
             suma += rows[i].conteo;
           }
           app.locals.suma = suma;
+        connection.query("SELECT capacidad_maxima FROM locales_usuarios WHERE id = ?", [req.session.id_usuario], async (err,rows)=>{
+          if (err) throw err;
+          app.locals.capacidad_maxima = rows[0].capacidad_maxima;
+        })
       });
       res.render("indexUsuario.ejs",{
         login: true,

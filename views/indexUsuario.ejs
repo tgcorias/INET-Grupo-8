@@ -24,14 +24,16 @@
 
                     <div class="Actuales">
                       <% if(typeof suma !== "undefined") {%>
-                        <h1><%= suma %></h1>
+                        <h1 id="personasActuales"><%= suma %></h1>
                       <%}%>
                         <h4>Actuales</h4>
                     </div>
 
 
                     <div class="Maximas">
-                        <h1>20</h1>
+                      <% if(typeof capacidad_maxima !== "undefined") {%>
+                        <h1 id="personasMaximas"><%= capacidad_maxima %></h1>
+                      <%}%>
                         <h4>Máximas</h4>
                     </div>
 
@@ -45,6 +47,8 @@
             Estadísticas
         </button>
 
+        <script type="text/javascript">
 
+        </script>
   </body>
 </html>
