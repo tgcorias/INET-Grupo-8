@@ -9,33 +9,45 @@
     <link rel="stylesheet" href="resources/css/mediaqueries/tablet.css" media="(min-width: 700px)">
     <title>Locales</title>
 </head>
+
 <body>
 
-    <header>
-        <div class="header__title--container">
-            <a href="/"> <i class="fas fa-chevron-left fa-w-8 fa-3x"></i></a>
-            <h1>Administrar</h1>
-        </div>
-     </header>
+          <header>
+              <div class="header__title--container">
+                  <a href="/"> <i class="fas fa-chevron-left fa-w-8 fa-3x"></i></a>
+                  <h1>Administrar</h1>
+              </div>
+          </header>
 
-     <div class="refresh__container">
-      <a href="/locales" class="refresh">Click para obtener nuevos resultados</a>
-     </div>
 
-    <section class="container" id="contenedor">
 
-      <% if(typeof listaLocales !== "undefined") {%>
-      <% for(let i=0; i<listaLocales.length; i++) {%>
-        <form action="cargarContadorAdmin"  method="POST">
-        <button type="submit" name="<%= listaLocales[i].id %>" class="local"><%= listaLocales[i].nombre_local%></button>
-      </form>
-      <%}} else {%>
-        <script type="text/javascript"> window.location.reload(true) </script>
-      <%}%>
+          <div class="refresh__container">
+            <a href="/locales" class="refresh">Click para obtener nuevos resultados</a>
+          </div>
 
-    </section>
 
-     <script src="https://kit.fontawesome.com/5e2793018e.js" crossorigin="anonymous"></script>
+
+
+          <section class="container" id="contenedor">
+
+                  <% if(typeof listaLocales !== "undefined") {%>
+                  <% for(let i=0; i<listaLocales.length; i++) {%>
+                    <form action="cargarContadorAdmin"  method="POST">
+                    <button type="submit" name="<%= listaLocales[i].id %>" class="local"><%= listaLocales[i].nombre_local%></button>
+            </form>
+
+
+            <%}} else {%>
+              <script type="text/javascript"> window.location.reload(true) </script>
+            <%}%>
+
+            
+          </section>
+
+
+
+
+          <script src="https://kit.fontawesome.com/5e2793018e.js" crossorigin="anonymous"></script>
 
 </body>
 </html>
