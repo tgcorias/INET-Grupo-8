@@ -21,7 +21,11 @@
 
      <section class="subheader__container">
       <div class="subheader">
-          <h3>Nombe del local</h3>
+        <% if(typeof nombre_local !== "undefined") {%>
+        <h3><%= nombre_local %></h3>
+        <%}else{%>
+        <script type="text/javascript"> window.location.reload(true) </script>
+        <%}%>
       </div>
   </section>
 
