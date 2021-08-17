@@ -11,42 +11,44 @@
   </head>
   <body>
 
-    <header>
-        <div class="header__title--container">
-            <h1>Administrar</h1>
-        </div>
-     </header>
+            <header>
+                <div class="header__title--container">
+                    <h1>Administrar</h1>
+                </div>
+            </header>
 
 
-     <section class="subheader__container">
-      <div class="subheader">
-          <h3>Nombe del local</h3>
-      </div>
-    </section>  
+            <section class="subheader__container">
+              <div class="subheader">
+                  <h3>Nombe del local</h3>
+              </div>
+            </section>  
 
 
-     <section class="container">
 
-          <div class="contador">
+            
+            <section class="container">
 
-                    <div class="Actuales">
-                      <% if(typeof suma !== "undefined") {%>
-                        <h1 id="personasActuales"><%= suma %></h1>
-                      <%}%>
-                        <h4>Actuales</h4>
-                    </div>
+                  <div class="contador">
+
+                            <div class="Actuales">
+                              <% if(typeof suma !== "undefined") {%>
+                                <h1 id="personasActuales"><%= suma %></h1>
+                              <%}%>
+                                <h4>Actuales</h4>
+                            </div>
 
 
-                    <div class="Maximas">
-                      <% if(typeof capacidad_maxima !== "undefined") {%>
-                        <h1 id="personasMaximas"><%= capacidad_maxima %></h1>
-                      <%}%>
-                        <h4>Máximas</h4>
-                    </div>
+                            <div class="Maximas">
+                              <% if(typeof capacidad_maxima !== "undefined") {%>
+                                <h1 id="personasMaximas"><%= capacidad_maxima %></h1>
+                              <%}%>
+                                <h4>Máximas</h4>
+                            </div>
 
-          </div>
+                  </div>
 
-     </section>
+            </section>
 
 
 
@@ -57,5 +59,10 @@
         <script type="text/javascript">
 
         </script>
+
+
+
+
+
   </body>
 </html>
