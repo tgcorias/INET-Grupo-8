@@ -51,6 +51,8 @@
 
           </div>
 
+          <h1 id="alerta" style="color: red; font-size:40px"></h1>
+
      </section>
 
 
@@ -60,6 +62,11 @@
         </button>
 
         <script type="text/javascript">
+          let genteActual = <%= suma %>;
+          let genteMaxima = <%= capacidad_maxima %>;
+          if (genteActual > genteMaxima) {
+            document.getElementById("alerta").innerText = "SE HA EXCEDIDO LA CAPADIDAD MÁXIMA"
+          }
 
         </script>
   </body>

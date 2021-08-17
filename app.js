@@ -70,7 +70,8 @@ app.get("/monitorAdmin", (req,res) => {
 app.get("/estadisticas", (req,res) => {
   if(req.session.loggedin){
     if(req.session.es_admin){
-      res.render("indexAdmin",{
+
+      res.render("estadisticas",{
         login: true,
       });
     }else{
@@ -181,10 +182,10 @@ app.get("/", (req, res)=>{
     res.render("login")
   }
 })
-
+var idLocal;
 //13- Cargar página de contador según usuario para el admin
 app.post("/cargarContadorAdmin",async(req,res)=>{
-  let idLocal = parseInt(Object.keys(req.body));
+  idLocal = parseInt(Object.keys(req.body));
   connection.query('SELECT * from registro WHERE id_local = ?', [idLocal], async (err, rows)=>{
       if (err) throw err;
       let suma = 0;
@@ -203,19 +204,32 @@ app.post("/cargarContadorAdmin",async(req,res)=>{
 
 //14- Cargar página de estadísticas para el usuario según fecha
 app.post("/cargarEstadistica",(req,res)=>{
-  req.session.fechaSolicitada = req.body.fecha;
-  app.locals.fechaSolicitada = req.session.fechaSolicitada;
-  connection.query("SELECT * from registro WHERE id_local = " + req.session.id_usuario + " AND fecha = '" + req.session.fechaSolicitada + "' AND conteo > 0", async (err, rows)=>{
-    if (err) throw err;
-    let clientesSegunHora = new Array(24).fill(0);
-    for(let i=0; i<rows.length;i++){
-      clientesSegunHora[parseInt(rows[i].hora.slice(0,2))] += rows[i].conteo;
-      }
-      app.locals.clientesSegunHora = clientesSegunHora;
+  if(!req.session.es_admin){
+    req.session.fechaSolicitada = req.body.fecha;
+    app.locals.fechaSolicitada = req.session.fechaSolicitada;
+    connection.query("SELECT * from registro WHERE id_local = " + req.session.id_usuario + " AND fecha = '" + req.session.fechaSolicitada + "' AND conteo > 0", async (err, rows)=>{
+      if (err) throw err;
+      let clientesSegunHora = new Array(24).fill(0);
+      for(let i=0; i<rows.length;i++){
+        clientesSegunHora[parseInt(rows[i].hora.slice(0,2))] += rows[i].conteo;
+        }
+        app.locals.clientesSegunHora = clientesSegunHora;
+    });
+  }else{
+    req.session.fechaSolicitada = req.body.fecha;
+    app.locals.fechaSolicitada = req.session.fechaSolicitada;
+    connection.query("SELECT * from registro WHERE id_local = " + idLocal + " AND fecha = '" + req.session.fechaSolicitada + "' AND conteo > 0", async (err, rows)=>{
+      if (err) throw err;
+      let clientesSegunHora = new Array(24).fill(0);
+      for(let i=0; i<rows.length;i++){
+        clientesSegunHora[parseInt(rows[i].hora.slice(0,2))] += rows[i].conteo;
+        }
+        app.locals.clientesSegunHora = clientesSegunHora;
   });
-  res.redirect("estadisticas")
+}
+  res.redirect("estadisticas");
 });
 
 app.listen(3000, (req, res) => {
   console.log('SERVER RUNNING IN http://localhost:3000');
-})
+});
