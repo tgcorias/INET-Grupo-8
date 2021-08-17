@@ -100,6 +100,18 @@ app.get("/monitorAdmin", (req,res) => {
 
   if(req.session.es_admin){
 
+    connection.query('SELECT * FROM registro WHERE id_local = ?', [idLocal], async (err, rows)=>{
+
+        if (err) throw err;
+        let suma = 0;
+        for(let i=0; i<rows.length; i++){
+
+          suma += rows[i].conteo;
+
+        }
+        app.locals.suma = suma;
+      });
+
       connection.query('SELECT * from registro', async (err, rows)=>{
         if (err) throw err;
         app.locals.informacion = rows;
