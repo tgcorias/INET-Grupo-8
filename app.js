@@ -74,19 +74,6 @@ app.get("/estadisticas", (req,res) => {
         login: true,
       });
     }else{
-      let currentDate = new Date();
-      let cDay = currentDate.getDate();
-      let cMonth = currentDate.getMonth() + 1;
-      let cYear = currentDate.getFullYear();
-      let fechaHoy = cYear + "." + cMonth + "." + cDay;
-      connection.query("SELECT * from registro WHERE id_local = " + req.session.id_usuario + " AND fecha = '" + fechaHoy + "' AND conteo > 0", async (err, rows)=>{
-        if (err) throw err;
-        let clientesSegunHora = new Array(24).fill(0);
-        for(let i=0; i<rows.length;i++){
-          clientesSegunHora[parseInt(rows[i].hora.slice(0,2))] += rows[i].conteo;
-          }
-          app.locals.clientesSegunHora = clientesSegunHora;
-      });
       res.render("estadisticas",{
         login: true,
       });
@@ -139,6 +126,11 @@ app.post("/auth", async(req,res)=>{
         res.send("<script>alert('Correo y/o contraseña incorrecto/s'); window.location.href = '/login';</script>")
         req.session.destroy();
       }else{
+        let currentDate = new Date();
+        let cDay = currentDate.getDate();
+        let cMonth = currentDate.getMonth() + 1;
+        let cYear = currentDate.getFullYear();
+        let fechaHoy = cYear + "." + cMonth + "." + cDay;
         req.session.loggedin = true;
         req.session.id_usuario = results[0].id;
         req.session.nombre_responsable = results[0].nombre_responsable;
@@ -150,6 +142,7 @@ app.post("/auth", async(req,res)=>{
         req.session.telefono = results[0].telefono;
         req.session.capacidad_maxima = results[0].capacidad_maxima;
         req.session.es_admin = results[0].es_admin;
+        req.session.fechaSolicitada = fechaHoy;
         res.redirect("/");
       }
     })
@@ -188,7 +181,7 @@ app.get("/", (req, res)=>{
   }
 })
 
-//13- Cargar página de estadísticas según usuario para el admin
+//13- Cargar página de contador según usuario para el admin
 app.post("/cargarContadorAdmin",async(req,res)=>{
   let idLocal = parseInt(Object.keys(req.body));
   connection.query('SELECT * from registro WHERE id_local = ?', [idLocal], async (err, rows)=>{
@@ -204,6 +197,21 @@ app.post("/cargarContadorAdmin",async(req,res)=>{
       });
   });
   res.redirect("monitorAdmin");
+});
+
+//14- Cargar página de estadísticas para el usuario según fecha
+app.post("/cargarEstadistica",(req,res)=>{
+  req.session.fechaSolicitada = req.body.fecha;
+  app.locals.fechaSolicitada = req.session.fechaSolicitada;
+  connection.query("SELECT * from registro WHERE id_local = " + req.session.id_usuario + " AND fecha = '" + req.session.fechaSolicitada + "' AND conteo > 0", async (err, rows)=>{
+    if (err) throw err;
+    let clientesSegunHora = new Array(24).fill(0);
+    for(let i=0; i<rows.length;i++){
+      clientesSegunHora[parseInt(rows[i].hora.slice(0,2))] += rows[i].conteo;
+      }
+      app.locals.clientesSegunHora = clientesSegunHora;
+  });
+  res.redirect("estadisticas")
 });
 
 app.listen(3000, (req, res) => {
