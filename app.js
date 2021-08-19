@@ -1,42 +1,42 @@
-//1- Invocamos a express
+// Invocamos al framework express
 const express = require("express");
 const app = express();
 
 
 
 
-//2- seteamos urlencode para capturar los datos del formulario
+// Seteamos urlencode para capturar los datos del formulario
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 
 
 
 
-//3- Invocamos a dotenv
+// Invocamos a dotenv
 const dotenv = require("dotenv");
 dotenv.config({path:"./env/.env"});
 
 
 
 
-//4- El directorio public
+// El directorio public
 app.use("/resources", express.static("public"));
 app.use("/resources", express.static(__dirname + "/public"));
 
 
 
-//5- Establecemos el motor de plantillas ejs
+// Establecemos el motor de plantillas .ejs
 app.set("view engine","ejs");
 
 
 
 
-//6- Invocamos a bcryptjs
+// Invocamos a bcryptjs para cifrar las contraseñas
 const bcryptjs = require("bcryptjs");
 
 
 
-//7- Var. de session
+// Declaramos la variable de session
 const session = require("express-session");
 app.use(session({
   secret: "secret",
@@ -47,34 +47,40 @@ app.use(session({
 
 
 
-//8- Invocamos al modulo de conexion de la base de datos
+// Invocamos al modulo de conexion de la base de datos
 const connection = require("./database/db");
 
 
 
 
-//9- Estableciendo las rutas
+// ---- Estableciendo las rutas ----
+
+
+
+// Dirigimos a /login antes de renderizar las plantillas
 app.get("/login", (req,res) => {
     res.render("login");
 })
 
 
 
-
+// Establecemos que /agregar sólo pueda ser renderizada si la sesión es admin.
 app.get("/agregar", (req,res) => {
+
   if(req.session.es_admin){
 
     res.render("agregar");
 
   }else{
 
-    res.send("No tiene acceso a esta página")
+    res.send("No autorizade")
 
   }
 })
 
 
 
+// Establecemos que /locales sólo pueda ser renderizada si la sesión es admin.
 
 app.get("/locales", (req,res) => {
 
@@ -95,6 +101,9 @@ app.get("/locales", (req,res) => {
 
 
 
+// Establecemos que /monitorAdmin sólo pueda ser renderizada si la sesión es admin.
+// Si es admin, hace una consulta a la Db por el registro con la idLocal solicitada.
+// Después, se declara una variable suma que tiene el conteo de personas para enviarla al contador en ejs.
 
 app.get("/monitorAdmin", (req,res) => {
 
@@ -128,6 +137,8 @@ app.get("/monitorAdmin", (req,res) => {
 
 
 
+// Se establece que /estadisticas pueda ser accesible para admin y usuario 
+// siempre y cuando hayan iniciado sesión, sino, renderiza /login
 
 app.get("/estadisticas", (req,res) => {
 
@@ -157,7 +168,10 @@ app.get("/estadisticas", (req,res) => {
 
 
 
-//10- Registro
+// Se establece una función asíncrona que se ejecuta si hay un submit en /agregar
+// Entonces, se extraen los datos de cada input y se almacenan en constantes
+// que después, se almacenan en la tabla locales_usuarios de la Db
+
 app.post("/agregar", async (req, res)=>{
 
   const nombre_local = req.body.nombre_local;
@@ -201,7 +215,12 @@ app.post("/agregar", async (req, res)=>{
 
 
 
-//11- Autenticacion
+
+
+// Autenticación de la sesión, se toman los datos de los inputs en /login y se comparan
+// con los que están en la base de datos, si no coincidem se envía un alert y se
+// destruye la sesión, redireccionando a /login
+// Si la sesión es correcta, se extraen los datos de la Db de ese usuario.
 app.post("/auth", async(req,res)=>{
 
   const correo = req.body.email;
@@ -252,7 +271,8 @@ app.post("/auth", async(req,res)=>{
 
 
 
-//12- Ruta para la página principal
+// Se establece una página principal que es diferente para el admin y para el usuario.
+// Se consulta a la Db por nombre_local y capacidad_maxima para enviarlo a .ejs
 app.get("/", (req, res)=>{
 
   if(req.session.loggedin){
@@ -300,12 +320,16 @@ app.get("/", (req, res)=>{
 })
 
 
-
+// Declaración de idLocal en global scope para que el admin pueda
+// hacer consultas a la Db en diferentes funciones.
 var idLocal;
 
 
-//13- Cargar página de contador según usuario para el admin
 
+
+// Cargar página de contador según el local seleccionado por el admin
+// Se le da valor a idLocal dependiendo de qué button toque el admin y se convierte a entero.
+// Luego se consulta a la Db por nombre_local y capacidad_maxima para enviarlo a .ejs
 app.post("/cargarContadorAdmin",async(req,res)=>{
 
         idLocal = parseInt(Object.keys(req.body));
@@ -339,7 +363,12 @@ app.post("/cargarContadorAdmin",async(req,res)=>{
 
 
 
-//14- Cargar página de estadísticas para el usuario según fecha
+
+
+// Se renderiza la página estadísticas y se carga el gráfico ChartJs dependiendo de la fecha 
+// solicitada por el usuario o admin. Se declara la variable fechaSolicitada con los datos del input.
+// Después, se hace una consulta a la tabla registros con la id de la sesión (o idLocal para el admin), 
+// la fecha, y conteo si es mayor a 0.
 app.post("/cargarEstadistica",(req,res)=>{
 
   if(!req.session.es_admin){
