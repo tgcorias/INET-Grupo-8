@@ -6,7 +6,6 @@
 }
 .formStat{
     margin-top: 65%;
-    position: fixed;
     display: flex;
     flex-direction: column;
     justify-content: center;
