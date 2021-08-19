@@ -25,7 +25,12 @@
 
      <section class="container">
 
-       
+       <form class="formStat" action="cargarEstadistica" method="post">
+
+                            <input type="date" name="fecha" value="" class="input">
+                            <button type="submit" name="button" class="button">Aceptar</button>
+
+       </form>
 
             <%if(typeof fechaSolicitada !== "undefined") {%>
             <h2><%= fechaSolicitada %></h2>
@@ -33,13 +38,6 @@
                 <h2>Elija la fecha</h2>
             <%}%>
 
-
-            <form class="formStat" action="cargarEstadistica" method="post">
-
-                <input type="date" name="fecha" value="" class="input">
-                <button type="submit" name="button" class="button">Aceptar</button>
-
-            </form>
 
 
         <div class="graphcontainer">
