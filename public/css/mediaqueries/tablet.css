@@ -1,9 +1,10 @@
 /* Página /indexAdmin responsive */
 .box{
+    width: 40%;
+    height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 400px;
     margin: 3%;
 }
 
@@ -14,7 +15,9 @@
 .header__title--container h1{
    margin: 0% 5% 0% 6%;
 }
-
+.box__img{
+    margin-top: 5%;
+}
 /* Página /agregar responsive */
 
 .input{
@@ -33,9 +36,8 @@
     margin-bottom: 1%;
 }
 .form{
-    width: 40%;
+    width: 50%;
     height: 300px;
-
 }
 /* Página /locales responsive */
 
@@ -47,5 +49,16 @@
 
 /*/UserIndex Responsive*/
 .subheader{
+    width: 40%;
+}
+
+/* Estadísticas responsive*/
+.form{
+    margin-top: 20%;
+}
+.form button{
     width: 30%;
+}
+.form input{
+    width: 40%;
 }
