@@ -12,6 +12,7 @@
 
 <body>
 
+  
           <header>
               <div class="header__title--container">
                   <a href="/"> <i class="fas fa-chevron-left fa-w-8 fa-3x"></i></a>
@@ -30,16 +31,24 @@
 
           <section class="container" id="contenedor">
 
+            <!--Se carga un botón diferente para cada local con un for que itera hasta llegar al length del array listaLocales-->
+
                   <% if(typeof listaLocales !== "undefined") {%>
-                  <% for(let i=0; i<listaLocales.length; i++) {%>
-                    <form action="cargarContadorAdmin"  method="POST">
-                    <button type="submit" name="<%= listaLocales[i].id %>" class="local"><%= listaLocales[i].nombre_local%></button>
-            </form>
+
+                        <% for(let i=0; i<listaLocales.length; i++) {%>
+
+                          <form action="cargarContadorAdmin"  method="POST">
+
+                                  <button type="submit" name="<%= listaLocales[i].id %>" class="local"><%= listaLocales[i].nombre_local%></button>
+
+                          </form>
 
 
-            <%}} else {%>
-              <script type="text/javascript"> window.location.reload(true) </script>
-            <%}%>
+                  <%}} else {%> <!--Si listaLocales es undefined, se recarga la página-->
+
+                         <script type="text/javascript"> window.location.reload(true) </script>
+                    
+                  <%}%>
 
             
           </section>

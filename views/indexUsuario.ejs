@@ -7,70 +7,120 @@
     <link rel="stylesheet" href="/resources/css/userIndex.css">
     <link rel="stylesheet" href="/resources/css/mediaqueries/tablet.css" media="(min-width: 600px)">
     <meta http-equiv="refresh" content="1">
+
     <title>User Page</title>
 
   </head>
   <body>
 
+
             <header>
+
                 <div class="header__title--container">
                     <h1>Administrar</h1>
                 </div>
+
             </header>
 
-     <section class="subheader__container">
-      <div class="subheader">
-          <% if(typeof nombre_local !== "undefined") {%>
-          <h3><%= nombre_local %></h3>
-          <%}else{%>
-          <script type="text/javascript"> window.location.reload(true) </script>
-          <%}%>
-      </div>
-    </section>
+
+
+
+            <section class="subheader__container">
+
+                <div class="subheader">
+
+                  <!--Si nombre_local es undefined, se recarga la página-->
+                    <% if(typeof nombre_local !== "undefined") {%>
+
+                            <h3><%= nombre_local %></h3>
+
+                    <%}else{%>
+
+                          <script type="text/javascript"> window.location.reload(true) </script>
+
+                    <%}%>
+                    
+                </div>
+
+            </section>
 
 
 
 
             <section class="container">
 
-                  <div class="contador">
+
+              <div class="contador">
 
                             <div class="Actuales">
+
+                              <!--Se invoca a la variable suma de app.js y se muestra si es diferente a "undefined"-->
                               <% if(typeof suma !== "undefined") {%>
-                                <h1 id="personasActuales"><%= suma %></h1>
+                                
+                                    <h1 id="personasActuales"><%= suma %></h1>
+
                               <%}%>
+
                                 <h4>Actuales</h4>
+
                             </div>
 
 
                             <div class="Maximas">
+
+                              <!--Se invoca a la variable capacidad_maxima de app.js y se muestra si es diferente a "undefined"-->
+                              
                               <% if(typeof capacidad_maxima !== "undefined") {%>
-                                <h1 id="personasMaximas"><%= capacidad_maxima %></h1>
+
+                                    <h1 id="personasMaximas"><%= capacidad_maxima %></h1>
+
                               <%}%>
+
                                 <h4>Máximas</h4>
+
                             </div>
+
                   </div>
 
-          <h1 id="alerta" style="color: red; font-size:40px"></h1>
 
-     </section>
+                  <!--Alerta que se activa si las personas actuales superan a la capacidad máxima-->
+                <h1 id="alerta" style="color: red; font-size:40px"></h1>
+
+
+
+            </section>
+
+
 
 
 
         <button onclick="location.href='/estadisticas'" class="stats">
+
             Estadísticas
+
         </button>
 
+
+        <!-- Script que se ejecuta cuando suma y capacidad máxima son diferentes a undefined. Y compara la gente actual con la máxima-->
         <% if(typeof suma !== "undefined" && typeof capacidad_maxima !== "undefined") {%>
-        <script type="text/javascript">
-          let genteActual = <%= suma %>;
-          let genteMaxima = <%= capacidad_maxima %>;
-          if (genteActual > genteMaxima) {
-            document.getElementById("alerta").innerText = "SE HA EXCEDIDO LA CAPADIDAD MÁXIMA"
-          }
+
+              <script type="text/javascript">
+
+
+              let genteActual = <%= suma %>;
+              let genteMaxima = <%= capacidad_maxima %>;
+
+              if (genteActual > genteMaxima) {
+                document.getElementById("alerta").innerText = "SE HA EXCEDIDO LA CAPADIDAD MÁXIMA"
+              }
+
           <%}%>
 
+
         </script>
+
+
+
 
 
   </body>

@@ -15,6 +15,9 @@
 
 <body>
 
+
+
+
     <header>
         <div class="header__title--container">
             <a href="/"> <i class="fas fa-chevron-left fa-w-8 fa-3x"></i></a>
@@ -23,34 +26,40 @@
      </header>
 
 
+
+
      <section class="container">
 
-       <form class="formStat" action="cargarEstadistica" method="post">
 
-                            <input type="date" name="fecha" value="" class="input">
-                            <button type="submit" name="button" class="button">Aceptar</button>
+                        <form class="formStat" action="cargarEstadistica" method="post">
 
-       </form>
+                                 <input type="date" name="fecha" value="" class="input">
+                                 <button type="submit" name="button" class="button">Aceptar</button>
 
-            <%if(typeof fechaSolicitada !== "undefined") {%>
-            <h2><%= fechaSolicitada %></h2>
-            <%} else {%>
-                <h2>Elija la fecha</h2>
-            <%}%>
+                        </form>
 
 
+                        <!-- Condicional para indicar qué mostrar en pantalla dependiendo de fechaSolicitada -->
+                          <%if(typeof fechaSolicitada !== "undefined") {%>
 
-        <div class="graphcontainer">
-            <canvas id="grafico" width="600" height="600"></canvas>
-        </div>
+                                <h2><%= fechaSolicitada %></h2>
+
+                          <%} else {%>
+
+                                <h2>Elija la fecha</h2>
+
+                           <%}%>
+
+
+
+                        <div class="graphcontainer">
+                            <canvas id="grafico" width="600" height="600"></canvas>
+                        </div>
+
+
+
 
      </section>
-
-
-
-     <script src="https://kit.fontawesome.com/5e2793018e.js" crossorigin="anonymous"></script>
-
-
 
 
 
@@ -58,7 +67,10 @@
 
      <script>
 
-         // Script de configuración para ChartJs
+         // Script de configuración para ChartJs, invocando a la variable clientesSegunHora
+         // Declarada en app.js
+
+
         var ctx = document.getElementById('grafico').getContext('2d');
         var myChart = new Chart(ctx, {
          type: 'bar',
@@ -95,5 +107,10 @@
          }
         });
      </script>
+
+
+
+
+    <script src="https://kit.fontawesome.com/5e2793018e.js" crossorigin="anonymous"></script>   
 </body>
 </html>
