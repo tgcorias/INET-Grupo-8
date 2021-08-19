@@ -4,16 +4,16 @@
     align-items: center;
     font-size: 15px;
 }
-.form{
+.formStat{
     margin-top: 105%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.form button{
+.formStat button{
     width: 70%;
 }
-.form input{
+.formStat input{
     width: 140%;
 }

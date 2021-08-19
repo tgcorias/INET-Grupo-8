@@ -53,12 +53,12 @@
 }
 
 /* Estadísticas responsive*/
-.form{
+.formStat{
     margin-top: 20%;
 }
-.form button{
+.formStat button{
     width: 30%;
 }
-.form input{
+.formStat input{
     width: 40%;
 }
