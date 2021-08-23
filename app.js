@@ -137,7 +137,7 @@ app.get("/monitorAdmin", (req,res) => {
 
 
 
-// Se establece que /estadisticas pueda ser accesible para admin y usuario 
+// Se establece que /estadisticas pueda ser accesible para admin y usuario
 // siempre y cuando hayan iniciado sesión, sino, renderiza /login
 
 app.get("/estadisticas", (req,res) => {
@@ -164,6 +164,11 @@ app.get("/estadisticas", (req,res) => {
 
   }
 })
+
+// Simulacion de Arduino
+app.get("/arduino",(req,res)=>{
+  res.render("arduino");
+});
 
 
 
@@ -365,9 +370,9 @@ app.post("/cargarContadorAdmin",async(req,res)=>{
 
 
 
-// Se renderiza la página estadísticas y se carga el gráfico ChartJs dependiendo de la fecha 
+// Se renderiza la página estadísticas y se carga el gráfico ChartJs dependiendo de la fecha
 // solicitada por el usuario o admin. Se declara la variable fechaSolicitada con los datos del input.
-// Después, se hace una consulta a la tabla registros con la id de la sesión (o idLocal para el admin), 
+// Después, se hace una consulta a la tabla registros con la id de la sesión (o idLocal para el admin),
 // la fecha, y conteo si es mayor a 0.
 app.post("/cargarEstadistica",(req,res)=>{
 
