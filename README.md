@@ -26,16 +26,7 @@ Para empezar, al iniciar sesión, existen dos tipos de usuarios posible:
 
 Por otro lado, el funcionamiento interno del sistema es parecido al protocolo MQTT. Cada cliente tiene su arduino conectado a internet, que envía la información al servidor, y  además, otro dispositivo donde puede acceder a la página web y consultar su conteo de personas. El servidor también puede ser consultado por los usuarios administradores.
 
-```mermaid
-graph LR
-
-A((  Servidor   ))-->F((Admin)) 
-A --> C((Local 1))
-A --> B((Local 2))
-A --> D((Local 3)) 
-G((Arduino 1 2 3)) ---> A
-
-```
+![MQTT](https://i.ibb.co/6sVMGQR/Captura-de-pantalla-de-2021-08-23-16-31-21.png)
 
 Lo que busca expresar el gráfico, es la forma en que cada arduino tiene una ID que coincide con la de su local, para que luego pueda ser consultada por el responsable del local y los usuarios admin. 
 
@@ -72,10 +63,12 @@ La tabla locales_usuarios tiene los campos necesarios que se ingresan por el adm
 Y la tabla registro tiene los campos id_registro, hora, fecha, conteo e id_local, es donde se envía la información sobre el conteo actual de personas de los locales para luego ser consultada.
 
 **Tabla locales_usuarios:**
+
 ![tabla locales_usuarios](https://i.ibb.co/zZJhjbz/Captura-de-pantalla-de-2021-08-23-16-12-10.png)
 
 
 **Tabla registro:**
+
 ![tabla registro](https://i.ibb.co/xqL8wjq/Captura-de-pantalla-de-2021-08-23-16-18-17.png)
 
 
@@ -87,5 +80,7 @@ El servidor está alojado en Google Cloud. Para esto hicimos una instancia de VM
 ## Arduino
 
 El código de arduino se encuentra en el archivo [Dispositivo.ino](https://github.com/tgcorias/INET1-Web/blob/main/C%C3%B3digo%20SQL%20y%20Arduino/Dispositivo.ino). Al momento de realización no contabamos con sensores de barrera, por lo que simulamos los sensores con dos botones, uno para ingreso y otro para egreso de persona. El circuito es sencillo:
+
 ![enter image description here](https://arduinogetstarted.com/images/tutorial/arduino-multiple-button-wiring-diagram.jpg)
+
 En lugar de usar tres botones, usamos dos. Por otro lado, implementamos las librerías de MySQL y Ethernet, para obtener la información de hora y día actual y enviar información a la base de datos del servidor.
