@@ -165,7 +165,7 @@ app.get("/estadisticas", (req,res) => {
   }
 })
 
-// Simulacion de Arduino
+// Renderización de /arduino para simular el dispositivo solamente si el usuario NO es admin.
 app.get("/arduino",(req,res)=>{
   if(req.session.loggedin){
     if(req.session.es_admin){
@@ -181,6 +181,8 @@ app.get("/arduino",(req,res)=>{
   }
 
 });
+
+// Funciones para insertar en la tabla registro dependiendo de la opción que se seleccione.
 
 app.post("/arduino",(req,res)=>{
   let currentDate = new Date();
