@@ -9,11 +9,17 @@ A continuación se explica el funcionamiento de este proyecto y las diferentes e
 
 # Índice
  **1.** Cómo funciona. 
+ 
  **2.** Etapas de Desarrollo.
+ 
  **3.** Web.
+ 
  **4.** Base de datos.
+ 
  **5.** Servidor.
+ 
   **6.** Arduino.
+
 
 ## Cómo funciona
 
