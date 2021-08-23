@@ -167,10 +167,44 @@ app.get("/estadisticas", (req,res) => {
 
 // Simulacion de Arduino
 app.get("/arduino",(req,res)=>{
-  res.render("arduino");
+  if(req.session.loggedin){
+    if(req.session.es_admin){
+      res.redirect("/")
+    }else{
+      connection.query('SELECT * FROM registro WHERE id_local = ?', [req.session.id_usuario], async (err, rows)=>{
+      });
+      res.render("arduino");
+    }
+  }else{
+    req.session.destroy();
+    res.redirect("login")
+  }
+
 });
 
+app.post("/arduino",(req,res)=>{
+  let currentDate = new Date();
+  let cDay = currentDate.getDate().toString();
+  let cMonth = ('0'+(currentDate.getMonth()+1)).slice(-2).toString();
+  let cYear = currentDate.getFullYear().toString();
+  let cHour = currentDate.getHours().toString();
 
+
+
+  let clickeado = (String(Object.keys(req.body)));
+
+  if(clickeado == "mas1"){
+    connection.query("INSERT INTO registro(fecha,hora,conteo,id_local) VALUES (" + cYear + "" + cMonth + "" + cDay + "," + cHour + "0000,1," + req.session.id_usuario + ")", async(error,results)=>{
+      if(error){console.log(error)}
+    });
+  }
+  if(clickeado == "menos1"){
+    connection.query("INSERT INTO registro(fecha,hora,conteo,id_local) VALUES (" + cYear + "" + cMonth + "" + cDay + "," + cHour + "0000,-1," + req.session.id_usuario + ")", async(error,results)=>{
+      if(error){console.log(error)}
+    });
+  }
+  res.render("arduino");
+});
 
 
 // Se establece una función asíncrona que se ejecuta si hay un submit en /agregar
