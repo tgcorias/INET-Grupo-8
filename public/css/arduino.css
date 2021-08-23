@@ -1,0 +1,36 @@
+.container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+form{
+    display: flex;
+    justify-content: center;
+}
+.buttonMas, .buttonMenos{
+    height: 150px;
+    width: 150px;
+    margin: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.buttonMas{
+    background-color: rgb(117, 255, 117);
+    border: 0px;
+    border-radius: 4px;
+}
+.buttonMas:hover{
+    transition: 350ms;
+    background-color: rgba(0, 0, 0, .5);
+    color: white;
+}
+.buttonMenos{
+    background-color: rgb(255, 92, 92);
+    border: 0px;
+    border-radius: 4px;
+}
+.buttonMenos:hover{
+    transition: 350ms;
+    background-color: rgba(0, 0, 0, .5);
+    color: white;
+}

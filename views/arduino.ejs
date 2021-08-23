@@ -4,40 +4,48 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/resources/css/style.css">
-    <link rel="stylesheet" href="/resources/css/userIndex.css">
+    <link rel="stylesheet" href="/resources/css/arduino.css">
     <link rel="stylesheet" href="/resources/css/mediaqueries/tablet.css" media="(min-width: 600px)">
-
-    <title>User Page</title>
+    <title>Arduino Simulator</title>
 
   </head>
   <body>
 
 
             <header>
-
                 <div class="header__title--container">
+                  <a href="/"> <i class="fas fa-chevron-left fa-w-8 fa-3x"></i></a>
                     <h1>Arduino</h1>
                 </div>
 
             </header>
+
+
+
+
 
             <section class="container">
 
               <form id="form_ingreso_egreso" action="arduino" method="POST">
 
               <div class="contador">
-                  <button type="submit" class="Actuales" name="mas1">
+                  <button type="submit" class="buttonMas" name="mas1">
                     +1
                   </button>
-                  <button type="submit" class="Maximas" name="menos1">
+                  <button type="submit" class="buttonMenos" name="menos1">
                     -1
                   </button>
                 </div>
                 </form>
 
-
-
             </section>
+
+
+
+
+
+
+                <script src="https://kit.fontawesome.com/5e2793018e.js" crossorigin="anonymous"></script>
 
   </body>
 </html>
