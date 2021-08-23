@@ -34,4 +34,4 @@ RENAME USER 'admin'@'localhost' TO 'admin'@'%';
 
 GRANT ALL PRIVILEGES on locales_registros.* TO 'admin'@'%';
 
-FLUSH PRIVILEGES
+FLUSH PRIVILEGES;
