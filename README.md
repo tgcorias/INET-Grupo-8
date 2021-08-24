@@ -55,12 +55,19 @@ Por otro lado, las tecnologías implementadas son: Git y GitHub, JavaScript, Nod
 El funcionamiento lógico de la página se encuentra en el archivo [App.js](https://github.com/tgcorias/INET1-Web/blob/main/app.js), las plantillas se encuentran en la carpeta [/views](https://github.com/tgcorias/INET1-Web/tree/main/views), y los estilos en [public/css](https://github.com/tgcorias/INET1-Web/tree/main/public/css). Por otro lado, la conexión con la base de datos inicia en [/database](https://github.com/tgcorias/INET1-Web/tree/main/database).
 
 Las bibliotecas, frameworks y módulos utilizados son:
+
 	- bcryptJs para el cifrado de las contraseñas.
+	
 	- ChartJs para generar gráficas dinámicas.
+	
 	- dotenv para las variables de conexión con la base de datos.
+	
 	- EJS para integrar javascript en las plantillas.
+	
 	- Express para el back-end.
+	
 	- mysql package, para hacer queries desde App.js a la base de datos. 
+	
 ## Base de datos
 
 La base de datos está alojada en la misma VPS que la página. 
