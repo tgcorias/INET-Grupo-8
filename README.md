@@ -2,6 +2,7 @@
 
 Este repositorio contiene nuestra solución a la problemática de la primer instancia de las olimpíadas virtuales de INET. 
 Grupo 8, EEST N°3 Ing. Agustín Rocca.
+
 Integrantes: Corias Ticiano, Navarro Julieta, Juan Cruz Stakys.
 
 A continuación se explica el funcionamiento de este proyecto y las diferentes etapas de desarrollo.
