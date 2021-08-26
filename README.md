@@ -93,8 +93,8 @@ El servidor está alojado en Google Cloud. Para esto hicimos una instancia de VM
 
 ## Arduino
 
-El código de arduino se encuentra en el archivo [Dispositivo.ino](https://github.com/tgcorias/INET1-Web/blob/main/C%C3%B3digo%20SQL%20y%20Arduino/Dispositivo.ino). Al momento de realización no contabamos con sensores de barrera, por lo que simulamos los sensores con dos botones, uno para ingreso y otro para egreso de persona. El circuito es sencillo:
+El código de arduino se encuentra en el archivo [Dispositivo.ino](https://github.com/tgcorias/INET1-Web/blob/main/C%C3%B3digo%20SQL%20y%20Arduino/Dispositivo.ino). Al momento de realización no contabamos con sensores de barrera, por lo que simulamos los sensores con dos botones, uno para ingreso y otro para egreso de persona. Además, le agregamos un módulo Ethernet al Arduino Uno, por otro lado, para mejorarlo sería ideal implementar sensores como el hc-sr04. El circuito que usamos es el siguiente:
 
 ![enter image description here](https://arduinogetstarted.com/images/tutorial/arduino-multiple-button-wiring-diagram.jpg)
 
-En lugar de usar tres botones, usamos dos. Por otro lado, implementamos las librerías de MySQL y Ethernet, para obtener la información de hora y día actual y enviar información a la base de datos del servidor.
+En lugar de usar tres botones, usamos dos. Por otro lado, implementamos las librerías de MySQL y Ethernet, para obtener la información de hora y día actual y enviar información a la base de datos del servidor. 
