@@ -4,7 +4,7 @@ Este repositorio contiene nuestra solución a la problemática de la primer inst
 
 EEST N°3 Ing. Agustín Rocca.
 
-Grupo 8: Corias Ticiano, Navarro Julieta, Juan Cruz Stakys.
+**Grupo 8:** Corias Ticiano, Navarro Julieta, Juan Cruz Stakys.
 
 A continuación se explica el funcionamiento de este proyecto y las diferentes etapas de desarrollo.
 
