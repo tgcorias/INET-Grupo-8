@@ -6,7 +6,7 @@ EEST N°3 Ing. Agustín Rocca.
 
 **Grupo 8:** Corias Ticiano, Navarro Julieta, Juan Cruz Stakys.
 
-La página está disponible accediendo a la siguiente IP: http://34.95.216.85:8080/
+La página está disponible accediendo a la siguiente IP: -
 
 A continuación se explica el funcionamiento de este proyecto y las diferentes etapas de desarrollo.
 
